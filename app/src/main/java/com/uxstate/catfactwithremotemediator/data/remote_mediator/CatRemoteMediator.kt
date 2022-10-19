@@ -12,6 +12,9 @@ import javax.inject.Inject
 @OptIn(ExperimentalPagingApi::class)
 class CatRemoteMediator @Inject constructor(private val api: CatAPI, private val db:CatDatabase) :
     RemoteMediator<Int, CatFact>() {
+
+    val dao = db.dao
+
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, CatFact>
