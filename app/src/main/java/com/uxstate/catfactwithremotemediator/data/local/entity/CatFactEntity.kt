@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class CatFactEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null, val fact: String, val length: Int
+    val id: Int? = null,
+    val fact: String,
+    val length: Int
 ) {
 }
