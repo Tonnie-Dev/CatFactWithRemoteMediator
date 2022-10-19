@@ -1,9 +1,9 @@
-package com.uxstate.catfacts.data.mapper
+package com.uxstate.catfactwithremotemediator.data.mapper
 
-import com.uxstate.catfacts.data.remote.dto.ApiResponseDTO
-import com.uxstate.catfacts.data.remote.dto.CatFactDTO
-import com.uxstate.catfacts.domain.model.ApiResponse
-import com.uxstate.catfacts.domain.model.CatFact
+import com.uxstate.catfactwithremotemediator.data.remote.dto.CatFactDTO
+import com.uxstate.catfactwithremotemediator.data.remote.dto.ApiResponseDTO
+import com.uxstate.catfactwithremotemediator.domain.model.ApiResponse
+import com.uxstate.catfactwithremotemediator.domain.model.CatFact
 
 
 //fact from dto to model

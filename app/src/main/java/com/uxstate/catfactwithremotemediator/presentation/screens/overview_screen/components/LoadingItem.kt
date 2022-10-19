@@ -1,4 +1,4 @@
-package com.uxstate.catfacts.presentation.screens.overview_screen.components
+package com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

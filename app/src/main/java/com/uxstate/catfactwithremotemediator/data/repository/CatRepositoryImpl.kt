@@ -1,12 +1,13 @@
-package com.uxstate.catfacts.data.repository
+package com.uxstate.catfactwithremotemediator.data.repository
 
-import com.uxstate.catfacts.data.mapper.toModel
-import com.uxstate.catfacts.data.remote.CatAPI
-import com.uxstate.catfacts.domain.model.ApiResponse
-import com.uxstate.catfacts.domain.repository.CatRepository
+
+import com.uxstate.catfactwithremotemediator.data.mapper.toModel
+import com.uxstate.catfactwithremotemediator.domain.model.ApiResponse
+import com.uxstate.catfactwithremotemediator.domain.repository.CatRepository
+import com.uxstate.catfactwithremotemediator.data.remote.CatAPI
 import javax.inject.Inject
 
-class CatRepositoryImpl @Inject constructor(private val api:CatAPI) :CatRepository{
+class CatRepositoryImpl @Inject constructor(private val api: CatAPI) :CatRepository{
 
 
     override suspend fun getCatFacts(page:Int): ApiResponse {

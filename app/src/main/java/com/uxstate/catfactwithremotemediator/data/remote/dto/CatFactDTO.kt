@@ -1,4 +1,4 @@
-package com.uxstate.catfacts.data.remote.dto
+package com.uxstate.catfactwithremotemediator.data.remote.dto
 
 
 import com.squareup.moshi.Json

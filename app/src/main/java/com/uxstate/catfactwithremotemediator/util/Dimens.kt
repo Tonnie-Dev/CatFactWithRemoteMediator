@@ -1,4 +1,4 @@
-package com.uxstate.catfacts.util
+package com.uxstate.catfactwithremotemediator.util
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp

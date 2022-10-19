@@ -1,6 +1,6 @@
-package com.uxstate.catfacts.domain.repository
+package com.uxstate.catfactwithremotemediator.domain.repository
 
-import com.uxstate.catfacts.domain.model.ApiResponse
+import com.uxstate.catfactwithremotemediator.domain.model.ApiResponse
 
 interface CatRepository {
 

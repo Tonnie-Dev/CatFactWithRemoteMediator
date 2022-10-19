@@ -1,8 +1,8 @@
-package com.uxstate.catfacts.di
+package com.uxstate.catfactwithremotemediator.di
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.uxstate.catfacts.data.remote.CatAPI
+import com.uxstate.catfactwithremotemediator.data.remote.CatAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

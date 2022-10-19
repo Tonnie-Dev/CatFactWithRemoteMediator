@@ -1,6 +1,7 @@
 package com.uxstate.catfactwithremotemediator.data.remote
 
-import com.uxstate.catfacts.data.remote.dto.ApiResponseDTO
+
+import com.uxstate.catfactwithremotemediator.data.remote.dto.ApiResponseDTO
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CatFactWithRemoteMediator</string>
+    <string name="refresh_label">Refresh</string>
+    <string name="error_message">Error</string>
 </resources>

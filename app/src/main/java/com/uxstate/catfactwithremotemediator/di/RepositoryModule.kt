@@ -1,7 +1,8 @@
-package com.uxstate.catfacts.di
+package com.uxstate.catfactwithremotemediator.di
 
-import com.uxstate.catfacts.data.repository.CatRepositoryImpl
-import com.uxstate.catfacts.domain.repository.CatRepository
+
+import com.uxstate.catfactwithremotemediator.data.repository.CatRepositoryImpl
+import com.uxstate.catfactwithremotemediator.domain.repository.CatRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,5 +14,5 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindRepository(repositoryImpl: CatRepositoryImpl):CatRepository
+    abstract fun bindRepository(repositoryImpl: CatRepositoryImpl): CatRepository
 }

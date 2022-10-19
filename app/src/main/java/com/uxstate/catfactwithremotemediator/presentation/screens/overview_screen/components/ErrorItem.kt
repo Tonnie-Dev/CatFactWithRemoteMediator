@@ -1,4 +1,4 @@
-package com.uxstate.catfacts.presentation.screens.overview_screen.components
+package com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -10,8 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.uxstate.catfacts.R
-import com.uxstate.catfacts.util.LocalSpacing
+
+import com.uxstate.catfactwithremotemediator.R
+import com.uxstate.catfactwithremotemediator.util.LocalSpacing
 
 @Composable
 fun ErrorItem(errorMessage: String = "Error Occurred!") {
