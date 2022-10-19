@@ -7,7 +7,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.uxstate.catfactwithremotemediator.data.local.CatDatabase
 import com.uxstate.catfactwithremotemediator.data.remote.CatAPI
 import com.uxstate.catfactwithremotemediator.util.Constants.DATABASE_NAME
-import com.uxstate.catfactwithremotemediator.util.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
