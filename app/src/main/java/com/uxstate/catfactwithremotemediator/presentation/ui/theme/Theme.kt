@@ -1,4 +1,4 @@
-package com.uxstate.catfactwithremotemediator.ui.theme
+package com.uxstate.catfactwithremotemediator.presentation.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
