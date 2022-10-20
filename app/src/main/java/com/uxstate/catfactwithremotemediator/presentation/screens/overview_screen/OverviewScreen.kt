@@ -43,7 +43,10 @@ fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
         ) {
 
         }
-    }, content = { values ->
+    },
+
+            floatingActionButton = {},
+            content = { values ->
 
         LazyColumn(contentPadding = values, content = {
 
