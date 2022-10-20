@@ -17,7 +17,7 @@ interface CatFactsDao {
     @Query("SELECT COUNT(id) FROM cat_facts_table")
     fun getCount():Flow<Int>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertFacts(facts:List<CatFactEntity>)
 
     @Query("DELETE FROM cat_facts_table")

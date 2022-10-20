@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface RemoteKeysDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertKeys(key: RemoteKeyEntity)
+    suspend fun insertKey(key: RemoteKeyEntity)
 
     @Query("SELECT * FROM remote_keys_table LIMIT 1")
     suspend fun getRemoteKey(): RemoteKeyEntity?

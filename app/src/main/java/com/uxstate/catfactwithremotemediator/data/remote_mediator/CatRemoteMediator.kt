@@ -9,11 +9,11 @@ import androidx.room.withTransaction
 import com.uxstate.catfactwithremotemediator.data.local.CatDatabase
 import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeyEntity
 import com.uxstate.catfactwithremotemediator.data.mapper.toEntity
-import com.uxstate.catfactwithremotemediator.data.remote.CatAPI
 import com.uxstate.catfactwithremotemediator.domain.model.CatFact
 import com.uxstate.catfactwithremotemediator.domain.repository.CatRepository
 import com.uxstate.catfactwithremotemediator.util.Constants
 import retrofit2.HttpException
+import timber.log.Timber
 import javax.inject.Inject
 
 private const val TAG = "REMOTE_MEDIATOR"
@@ -46,37 +46,40 @@ class CatRemoteMediator @Inject constructor(
                     factsDao.deleteFacts()
                     keysDao.deleteRemoteKeys()
 
-                    //return fist page as the load key
-                    Constants.CAT_FACTS_STARTING_PAGE_INDEX
+                    //return fist page as the load key and trip
+                   1
+
                 }
 
                 //short circuit
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
 
                 LoadType.APPEND -> {
-
+//when we get here we already have some remote key saved
                     val remoteKey = keysDao.getRemoteKey()!!
 
+                    Timber.i("The RemoteKey is $remoteKey")
                     if (remoteKey.currentPage == remoteKey.lastPage) {
                         return MediatorResult.Success(endOfPaginationReached = true)
                     }
 
+                    //return current page + 1
                     remoteKey.currentPage.plus(1)
                 }
 
 
             }
-
+//appi response with availed load key
             val response = repository.getCatFacts(loadKey)
             db.withTransaction {
 
-                keysDao.insertKeys(
+                keysDao.insertKey(
                         RemoteKeyEntity(
                                 currentPage = response.currentPage,
                                 lastPage = response.lastPage
                         )
                 )
-                factsDao.insertFacts(response.data)
+                factsDao.insertFacts(response.data.map { it.toEntity() })
 
             }
             MediatorResult.Success(endOfPaginationReached = false)
