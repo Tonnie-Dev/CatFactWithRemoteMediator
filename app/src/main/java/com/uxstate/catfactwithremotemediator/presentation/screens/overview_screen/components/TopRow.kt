@@ -12,6 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.catfactwithremotemediator.R
 import com.uxstate.catfactwithremotemediator.util.LocalSpacing
@@ -26,14 +30,20 @@ fun TopRow(modifier: Modifier = Modifier, pos:Int, prev:Int?, next:Int?, onClick
             horizontalArrangement = Arrangement.SpaceEvenly
     ) {
 
-        //Button
-        Button(onClick = onClick, shape = RoundedCornerShape(spacing.spaceMedium)) {
 
-            Text(text = stringResource(R.string.refresh_label), style = MaterialTheme.typography.h6)
+
+        val text = buildAnnotatedString {
+
+            append("Prev Page: $prev")
+            withStyle(style = SpanStyle(color = MaterialTheme.colors.primary, fontWeight = FontWeight.Bold)){
+
+                append("Curr Page: $pos")
+            }
+            append("Next Page: $next")
+
         }
-
         //Page Text
-        Text(text = "Pos: $pos Prev: $prev Next: $next", style = MaterialTheme.typography.h5)
+        Text(text = text, style = MaterialTheme.typography.h5)
 
 
     }
