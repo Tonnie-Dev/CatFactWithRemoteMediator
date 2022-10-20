@@ -4,6 +4,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import androidx.paging.RemoteMediator.InitializeAction.*
 import androidx.room.withTransaction
 import com.uxstate.catfactwithremotemediator.data.local.CatDatabase
 import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeyEntity
@@ -79,16 +80,23 @@ class CatRemoteMediator @Inject constructor(
             MediatorResult.Success(endOfPaginationReached = false)
 
 
-        }catch (e:HttpException){
+        } catch (e: HttpException) {
 
             MediatorResult.Error(e)
-        }
-        catch (e:Exception  ){
+        } catch (e: Exception) {
             MediatorResult.Error(e)
 
         }
 
 
+    }
+
+    override suspend fun initialize(): InitializeAction {
+
+        //retrieve the saved key from dao
+        val remoteKey = keysDao.getRemoteKey()
+
+        return if (remoteKey == null) LAUNCH_INITIAL_REFRESH else SKIP_INITIAL_REFRESH
     }
 }
 
