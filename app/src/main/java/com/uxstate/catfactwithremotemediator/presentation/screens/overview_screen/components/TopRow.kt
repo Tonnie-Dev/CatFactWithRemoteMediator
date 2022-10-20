@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.catfactwithremotemediator.util.LocalSpacing
 
 @Composable
-fun TopRow(modifier: Modifier = Modifier, pos: Int, prev: Int?, next: Int?, onClick: () -> Unit) {
+fun TopRow(modifier: Modifier = Modifier, lastPage: Int, currentPage: Int, factsCount: Int, onClick: () -> Unit) {
 
     val spacing = LocalSpacing.current
     Row(
@@ -31,7 +31,7 @@ fun TopRow(modifier: Modifier = Modifier, pos: Int, prev: Int?, next: Int?, onCl
 
         val text = buildAnnotatedString {
 
-            append("Prev Pg: $prev  ")
+            append("Last Pg: $lastPage  ")
             withStyle(
                     style = SpanStyle(
                             color = Color(0xFFFF007F),
@@ -40,9 +40,9 @@ fun TopRow(modifier: Modifier = Modifier, pos: Int, prev: Int?, next: Int?, onCl
                     )
             ) {
 
-                append("Curr Pg: $pos  ")
+                append("Current Pg: $currentPage  ")
             }
-            append("Next Page: $next")
+            append("Facts Count: $factsCount")
 
         }
         //Page Text

@@ -27,23 +27,23 @@ fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
     //facts:LazyPagingItems<CatFact>
     val facts = viewModel.pager.collectAsLazyPagingItems()
 
-    //collect pages state
-    val currentPage by viewModel.currentPage.collectAsState()
-    val prevPage by viewModel.prevKey.collectAsState()
-    val nextPage by viewModel.nextKey.collectAsState()
+    val stats by viewModel.stats.collectAsState()
 
     Scaffold(topBar = {
         TopRow(
                 modifier = Modifier.fillMaxWidth(),
-                pos = currentPage,
-                prev = prevPage,
-                next = nextPage
+                lastPage = stats.lastPage,
+                currentPage = stats.currentPage,
+                factsCount = stats.factsCount
         ) {
 
         }
     },
 
-            floatingActionButton = {FabButton {}},
+            floatingActionButton = {FabButton {
+
+                facts.refresh()
+            }},
             floatingActionButtonPosition = FabPosition.Center,
             content = { values ->
 

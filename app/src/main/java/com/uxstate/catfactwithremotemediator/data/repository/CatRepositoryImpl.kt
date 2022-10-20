@@ -23,7 +23,10 @@ class CatRepositoryImpl @Inject constructor(private val api: CatAPI, private val
 
     override fun getStats(): Flow<Stats> {
         return keysDao.getKeyFlow()
-                .combine(factsDao.getCount()) { key, count ->
+                .combine(factsDao.getCount())
+
+                //transform function
+                { key, count ->
 
                     Stats(
                             currentPage = key?.currentPage ?: 0,
