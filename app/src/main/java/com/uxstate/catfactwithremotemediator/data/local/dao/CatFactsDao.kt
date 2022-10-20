@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CatFactsDao {
-
     //count all rows
 
     @Query("SELECT COUNT(id) FROM cat_facts_table")
@@ -26,4 +25,8 @@ interface CatFactsDao {
 
     @Query("SELECT * FROM cat_facts_table")
     fun getFactsPagingData():PagingSource<Int, CatFact>
+
+
+
 }
+
