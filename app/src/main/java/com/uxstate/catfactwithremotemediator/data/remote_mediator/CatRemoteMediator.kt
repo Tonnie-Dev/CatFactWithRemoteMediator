@@ -73,11 +73,9 @@ class CatRemoteMediator @Inject constructor(
                                 lastPage = response.lastPage
                         )
                 )
-
                 factsDao.insertFacts(response.data.map { it.toEntity() })
 
             }
-
             MediatorResult.Success(endOfPaginationReached = false)
 
 
