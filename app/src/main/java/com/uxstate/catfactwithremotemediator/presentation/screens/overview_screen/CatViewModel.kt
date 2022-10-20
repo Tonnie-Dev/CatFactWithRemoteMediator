@@ -8,28 +8,34 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.uxstate.catfactwithremotemediator.data.local.CatDatabase
 import com.uxstate.catfactwithremotemediator.data.remote_mediator.CatRemoteMediator
+import com.uxstate.catfactwithremotemediator.domain.model.Stats
 import com.uxstate.catfactwithremotemediator.domain.repository.CatRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CatViewModel @Inject constructor(
     private val repository: CatRepository,
-    private val mediator: CatRemoteMediator,
-    val db: CatDatabase
+    mediator: CatRemoteMediator,
+    private val db: CatDatabase
 ) : ViewModel() {
 
-    private val _currentPage = MutableStateFlow(0)
-    val currentPage = _currentPage.asStateFlow()
+ private val _stats = MutableStateFlow(Stats(0,0,0))
+    val stats = _stats.asStateFlow()
 
-    private val _prevKey = MutableStateFlow<Int?>(null)
-    val prevKey = _prevKey.asStateFlow()
+    init {
 
-    private val _nextKey = MutableStateFlow<Int?>(null)
-    val nextKey = _nextKey.asStateFlow()
+        viewModelScope.launch {
 
+            repository.getStats().collect{
+
+                _stats.emit(it)
+            }
+        }
+    }
 
     @OptIn(ExperimentalPagingApi::class)
     val pager = Pager(
