@@ -10,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,7 +23,7 @@ fun FabButton(
 ) {
 
     val spacing = LocalSpacing.current
-Surface(shape = CircleShape, color = MaterialTheme.colors.primary, elevation = 5.dp) {
+Surface(shape = CircleShape, color = Color(0xFFFF007F), elevation = 5.dp) {
     IconButton(onClick = onRefresh, modifier = Modifier.size(spacing.spaceExtraLarge)) {
         Icon(
                 imageVector = Icons.Default.Refresh,
