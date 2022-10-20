@@ -60,16 +60,16 @@ fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
 
             //Prepend - Load at the start of a Paging Data
             when (facts.loadState.prepend) {
-                is LoadState.Loading -> loadingItemExtension()
+                is LoadState.Loading -> Unit
                 is LoadState.NotLoading -> Unit
-                is LoadState.Error -> errorItemExtension()
+                is LoadState.Error -> Unit
             }
 
             //Append -  Load at the end of a PagingData
             when (facts.loadState.append) {
-                is LoadState.Loading -> loadingItemExtension()
+                is LoadState.Loading -> Unit
                 is LoadState.NotLoading -> Unit
-                is LoadState.Error -> errorItemExtension()
+                is LoadState.Error -> Unit
 
 
         }})

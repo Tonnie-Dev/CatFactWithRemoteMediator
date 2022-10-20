@@ -11,6 +11,7 @@ import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeyEntity
 import com.uxstate.catfactwithremotemediator.data.mapper.toEntity
 import com.uxstate.catfactwithremotemediator.data.remote.CatAPI
 import com.uxstate.catfactwithremotemediator.domain.model.CatFact
+import com.uxstate.catfactwithremotemediator.domain.repository.CatRepository
 import com.uxstate.catfactwithremotemediator.util.Constants
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -21,7 +22,7 @@ private const val CAT_FACTS_STARTING_PAGE_INDEX = 1
 
 @OptIn(ExperimentalPagingApi::class)
 class CatRemoteMediator @Inject constructor(
-    private val api: CatAPI,
+    private val repository: CatRepository,
     private val db: CatDatabase
 ) : RemoteMediator<Int, CatFact>() {
 
@@ -66,7 +67,7 @@ class CatRemoteMediator @Inject constructor(
 
             }
 
-            val response = api.getCatFacts(loadKey)
+            val response = repository.getCatFacts(loadKey)
             db.withTransaction {
 
                 keysDao.insertKeys(
@@ -75,7 +76,7 @@ class CatRemoteMediator @Inject constructor(
                                 lastPage = response.lastPage
                         )
                 )
-                factsDao.insertFacts(response.data.map { it.toEntity() })
+                factsDao.insertFacts(response.data)
 
             }
             MediatorResult.Success(endOfPaginationReached = false)

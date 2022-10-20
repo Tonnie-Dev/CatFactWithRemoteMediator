@@ -39,7 +39,7 @@ class CatViewModel @Inject constructor(
 
     @OptIn(ExperimentalPagingApi::class)
     val pager = Pager(
-            config = PagingConfig(pageSize = 5),
+            config = PagingConfig(pageSize = 100),
             remoteMediator = mediator,
             pagingSourceFactory = { db.factsDao.getFactsPagingData() }).flow.cachedIn(viewModelScope)
 }

@@ -1,8 +1,8 @@
 package com.uxstate.catfactwithremotemediator.data.mapper
 
 import com.uxstate.catfactwithremotemediator.data.local.entity.CatFactEntity
-import com.uxstate.catfactwithremotemediator.data.remote.dto.CatFactDTO
 import com.uxstate.catfactwithremotemediator.data.remote.dto.ApiResponseDTO
+import com.uxstate.catfactwithremotemediator.data.remote.dto.CatFactDTO
 import com.uxstate.catfactwithremotemediator.domain.model.ApiResponse
 import com.uxstate.catfactwithremotemediator.domain.model.CatFact
 
@@ -19,6 +19,12 @@ fun CatFact.toDto(): CatFactDTO {
     return CatFactDTO(fact = this.fact, length = this.length)
 }
 
+//CatFact -model to entity
+fun CatFact.toEntity(): CatFactEntity {
+
+    return CatFactEntity(id = null, fact = this.fact, length = this.length)
+}
+
 //response from dto to model
 fun ApiResponseDTO.toModel(): ApiResponse {
 
@@ -31,7 +37,7 @@ fun ApiResponseDTO.toModel(): ApiResponse {
 
 //CatFactDTO to entity
 
-fun CatFactDTO.toEntity(): CatFactEntity{
+fun CatFactDTO.toEntity(): CatFactEntity {
 
     return CatFactEntity(
             id = null,
