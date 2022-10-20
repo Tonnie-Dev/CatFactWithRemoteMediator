@@ -4,21 +4,21 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeysEntity
+import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeyEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RemoteKeysDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertKeys(key: RemoteKeysEntity)
+    suspend fun insertKeys(key: RemoteKeyEntity)
 
     @Query("SELECT * FROM remote_keys_table LIMIT 1")
-    suspend fun getRemoteKey(): RemoteKeysEntity?
+    suspend fun getRemoteKey(): RemoteKeyEntity?
 
     @Query("DELETE FROM remote_keys_table")
     suspend fun deleteRemoteKeys(): Int
 
     @Query("SELECT * FROM remote_keys_table LIMIT 1")
-    fun getKeyFlow(): Flow<RemoteKeysEntity?>
+    fun getKeyFlow(): Flow<RemoteKeyEntity?>
 }

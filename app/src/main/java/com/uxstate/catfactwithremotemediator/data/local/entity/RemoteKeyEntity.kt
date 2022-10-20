@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "remote_keys_table")
-data class RemoteKeysEntity(
+data class RemoteKeyEntity(
     @PrimaryKey
     val id: Int = 1,
     val currentPage: Int,

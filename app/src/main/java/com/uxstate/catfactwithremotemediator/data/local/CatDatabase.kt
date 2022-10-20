@@ -5,10 +5,10 @@ import androidx.room.RoomDatabase
 import com.uxstate.catfactwithremotemediator.data.local.dao.CatFactsDao
 import com.uxstate.catfactwithremotemediator.data.local.dao.RemoteKeysDao
 import com.uxstate.catfactwithremotemediator.data.local.entity.CatFactEntity
-import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeysEntity
+import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeyEntity
 
 @Database(
-        entities = [CatFactEntity::class, RemoteKeysEntity::class],
+        entities = [CatFactEntity::class, RemoteKeyEntity::class],
         version = 1,
         exportSchema = true
 )

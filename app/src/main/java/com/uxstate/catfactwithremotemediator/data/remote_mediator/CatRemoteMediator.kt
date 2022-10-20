@@ -6,10 +6,12 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.uxstate.catfactwithremotemediator.data.local.CatDatabase
-import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeysEntity
+import com.uxstate.catfactwithremotemediator.data.local.entity.RemoteKeyEntity
+import com.uxstate.catfactwithremotemediator.data.mapper.toEntity
 import com.uxstate.catfactwithremotemediator.data.remote.CatAPI
 import com.uxstate.catfactwithremotemediator.domain.model.CatFact
 import com.uxstate.catfactwithremotemediator.util.Constants
+import retrofit2.HttpException
 import javax.inject.Inject
 
 private const val TAG = "REMOTE_MEDIATOR"
@@ -66,18 +68,25 @@ class CatRemoteMediator @Inject constructor(
             db.withTransaction {
 
                 keysDao.insertKeys(
-                        RemoteKeysEntity(
+                        RemoteKeyEntity(
                                 currentPage = response.currentPage,
                                 lastPage = response.lastPage
                         )
                 )
 
-                factsDao.insertFacts(response.data)
+                factsDao.insertFacts(response.data.map { it.toEntity() })
 
             }
 
             MediatorResult.Success(endOfPaginationReached = false)
 
+
+        }catch (e:HttpException){
+
+            MediatorResult.Error(e)
+        }
+        catch (e:Exception  ){
+            MediatorResult.Error(e)
 
         }
 
