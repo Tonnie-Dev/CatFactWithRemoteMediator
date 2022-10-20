@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.OverviewScreen
 import com.uxstate.catfactwithremotemediator.presentation.ui.theme.CatFactWithRemoteMediatorTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,22 +25,11 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+
+                    OverviewScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CatFactWithRemoteMediatorTheme {
-        Greeting("Android")
-    }
-}
