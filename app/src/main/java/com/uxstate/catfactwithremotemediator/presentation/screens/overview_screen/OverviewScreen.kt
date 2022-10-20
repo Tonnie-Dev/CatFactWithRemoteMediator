@@ -2,6 +2,7 @@ package com.uxstate.catfactwithremotemediator.presentation.screens.overview_scre
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -9,6 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
@@ -41,11 +43,41 @@ fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
         ) {
 
         }
-    }, content = {
+    }, content = { values ->
+
+        LazyColumn(contentPadding = values, content = {
+
+            //Refresh - PagingData content being refreshed
+            when (facts.loadState.refresh) {
+                is LoadState.Loading -> loadingItemExtension()
+
+                //// display the items only when loadState.refresh is not loading
+                is LoadState.NotLoading ->catFactsItem(facts)
+                is LoadState.Error -> errorItemExtension()
+            }
+
+            //Prepend - Load at the start of a Paging Data
+            when (facts.loadState.prepend) {
+                is LoadState.Loading -> loadingItemExtension()
+                is LoadState.NotLoading -> Unit
+                is LoadState.Error -> errorItemExtension()
+            }
+
+            //Append -  Load at the end of a PagingData
+            when (facts.loadState.append) {
+                is LoadState.Loading -> loadingItemExtension()
+                is LoadState.NotLoading -> Unit
+                is LoadState.Error -> errorItemExtension()
 
 
-    })
-}
+        }})
+
+
+
+
+
+    }
+)}
 
 
 fun LazyListScope.loadingItemExtension() {
