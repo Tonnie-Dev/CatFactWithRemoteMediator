@@ -15,10 +15,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.uxstate.catfactwithremotemediator.domain.model.CatFact
-import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components.ErrorItem
-import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components.FactRow
-import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components.LoadingItem
-import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components.TopRow
+import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components.*
 
 @Composable
 fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
@@ -45,7 +42,7 @@ fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
         }
     },
 
-            floatingActionButton = {},
+            floatingActionButton = {FabButton {}},
             content = { values ->
 
         LazyColumn(contentPadding = values, content = {
