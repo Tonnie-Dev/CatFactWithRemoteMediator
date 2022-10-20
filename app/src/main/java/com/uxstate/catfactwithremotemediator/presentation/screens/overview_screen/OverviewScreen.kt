@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.uxstate.catfactwithremotemediator.domain.model.CatFact
 import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components.ErrorItem
 import com.uxstate.catfactwithremotemediator.presentation.screens.overview_screen.components.LoadingItem
@@ -22,7 +23,7 @@ fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
     //collect paging data from viewModel
 
     //facts:LazyPagingItems<CatFact>
-   // val facts = viewModel.pager.collectAsLazyPagingItems()
+    val facts = viewModel.pager.collectAsLazyPagingItems()
 
     //collect pages state
     val currentPage by viewModel.currentPage.collectAsState()
@@ -38,7 +39,10 @@ fun OverviewScreen(viewModel: CatViewModel = hiltViewModel()) {
         ) {
 
         }
-    }){values ->}
+    }, content = {
+
+
+    })
 }
 
 

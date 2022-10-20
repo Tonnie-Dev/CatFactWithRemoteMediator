@@ -49,6 +49,7 @@ class CatRemoteMediator @Inject constructor(
                     Constants.CAT_FACTS_STARTING_PAGE_INDEX
                 }
 
+                //short circuit
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
 
                 LoadType.APPEND -> {
