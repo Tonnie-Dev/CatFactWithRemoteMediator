@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.uxstate.catfactwithremotemediator.data.local.entity.CatFactsEntity
+import com.uxstate.catfactwithremotemediator.data.local.entity.CatFactEntity
 import com.uxstate.catfactwithremotemediator.domain.model.CatFact
 import kotlinx.coroutines.flow.Flow
 
@@ -18,7 +18,7 @@ interface CatFactsDao {
     fun getCount():Flow<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFacts(facts:List<CatFactsEntity>)
+    suspend fun insertFacts(facts:List<CatFactEntity>)
 
     @Query("DELETE FROM cat_facts_table")
     suspend fun deleteFacts():Int

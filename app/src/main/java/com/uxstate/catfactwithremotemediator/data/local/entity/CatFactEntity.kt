@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "cat_facts_table")
-data class CatFactsEntity(
+data class CatFactEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
     val fact: String,
